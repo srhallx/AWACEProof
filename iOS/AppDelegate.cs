@@ -14,19 +14,10 @@ namespace AWACEProof.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 
+			//Load Defaults
+			AppData.KeyPairs = UserDefaultsHelper.RetrieveUserDefaults ();
 
-			var serverUrl = NSUserDefaults.StandardUserDefaults.DictionaryForKey ("com.apple.configuration.managed");
-
-			AppData.KeyPairs = new ObservableCollection<SettingsData> ();
-
-			AppData.KeyPairs.Add (new SettingsData("First", "Second"));
-
-			if (serverUrl != null) {
-				for (int i = 0; i < (int)serverUrl.Count; ++i) {
-					AppData.KeyPairs.Add (new SettingsData(serverUrl.Keys [i].ToString (), serverUrl.Values [i].ToString ()));
-				}
-			}
-
+			//Start application
 			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);

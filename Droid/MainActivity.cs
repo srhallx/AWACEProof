@@ -25,7 +25,12 @@ namespace AWACEProof.Droid
 				//Restrictions changed, do something.
 				if (e.Settings != null) {
 					for (int i = 0; i < e.Settings.Length; ++i ) {
-						Console.WriteLine(e.Settings[i].Key + " " + e.Settings[i].Value);
+						foreach (var key in e.Settings[i].Keys) { 
+							Console.WriteLine(key);
+						}
+						foreach (var value in e.Settings[i].Values) {
+							Console.WriteLine(value);
+						}
 					}
 				} else
 					Console.WriteLine("App Restrictions settings were null.");

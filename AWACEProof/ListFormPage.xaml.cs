@@ -7,7 +7,7 @@ namespace AWACEProof
 {
 	public partial class ListFormPage : ContentPage
 	{
-		ObservableCollection<SettingsData> Items = AppData.KeyPairs;
+		ObservableCollection<KeyValuePair<string, string>> Items = AppData.KeyPairs;
 
 		public ListFormPage ()
 		{

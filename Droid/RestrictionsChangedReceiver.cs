@@ -3,15 +3,16 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace AWACEProof.Droid
 {
 
 	public class RestrictionsChangedArgs : EventArgs
 	{
-		public SettingsData[] Settings { get; private set; }
+		public Dictionary<string, string>[] Settings { get; private set; }
 
-		public RestrictionsChangedArgs(SettingsData[] settings)
+		public RestrictionsChangedArgs(Dictionary<string, string>[] settings)
 		{
 			Settings = settings;
 		}
@@ -36,12 +37,11 @@ namespace AWACEProof.Droid
 				Collection<string> a = b.KeySet ();
 
 				int i = 0;
-				SettingsData[] settings = new SettingsData[b.Size];
+				Dictionary<string, string>[] settings = new Dictionary<string, string> (b.Size);
 
-				foreach (string s in a) {
-					settings [i++].Key = s;
-				}
-
+				//
+				// Fire event that restrictions have changed
+				//
 				RestrictionsChanged (this, new RestrictionsChangedArgs (settings));
 			}
 		}
